@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 
@@ -8,9 +8,13 @@ function App() {
   const [segundos, setSegundos] = useState(20);
 
   useEffect(() => {
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       setSegundos(prevSegundos => prevSegundos - 1) //pega o valor anterior/previo de segundos
-    }, 1000)
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId)
+    }
   }, []);
 
 
